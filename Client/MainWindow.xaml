@@ -4,53 +4,66 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Mail Client 1.0" Height="511" Width="1289" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Mail Client 1.0" Height="511" Width="1289" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        Icon="Images/ImageIcon.jpg">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
                 <Setter.Value>
                     <ControlTemplate>
-                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true"
+                                   Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
+                                   StrokeThickness="1" StrokeDashArray="1 2" />
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
-        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
-        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
-        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
-        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
-        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD" />
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070" />
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4" />
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5" />
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383" />
         <Style x:Key="RoundedStyleButton" TargetType="{x:Type Button}">
-            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
-            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="1"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}" />
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}" />
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="1" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="25" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true" Height="28">
-                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="25"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}" SnapsToDevicePixels="true" Height="28">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              Margin="{TemplateBinding Padding}" RecognizesAccessKey="True"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsDefaulted" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                <Setter Property="BorderBrush" TargetName="border"
+                                        Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="Background" TargetName="border" Value="#EAB01E"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="#EAB01E"/>
+                                <Setter Property="Background" TargetName="border" Value="#EAB01E" />
+                                <Setter Property="BorderBrush" TargetName="border" Value="#EAB01E" />
                             </Trigger>
                             <Trigger Property="IsPressed" Value="true">
-                                <Setter Property="Background" TargetName="border" Value="#F1CA68"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="#F1CA68"/>
+                                <Setter Property="Background" TargetName="border" Value="#F1CA68" />
+                                <Setter Property="BorderBrush" TargetName="border" Value="#F1CA68" />
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
-                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                                <Setter Property="Background" TargetName="border"
+                                        Value="{StaticResource Button.Disabled.Background}" />
+                                <Setter Property="BorderBrush" TargetName="border"
+                                        Value="{StaticResource Button.Disabled.Border}" />
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter"
+                                        Value="{StaticResource Button.Disabled.Foreground}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -61,35 +74,49 @@
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="Black" Offset="0"/>
-                <GradientStop Color="White" Offset="1"/>
-                <GradientStop Color="#FFB7B7B7" Offset="0.788"/>
-                <GradientStop Color="#FFC2C2C2" Offset="0.851"/>
-                <GradientStop Color="#FFF6F6F6"/>
+                <GradientStop Color="Black" Offset="0" />
+                <GradientStop Color="White" Offset="1" />
+                <GradientStop Color="#FFB7B7B7" Offset="0.788" />
+                <GradientStop Color="#FFC2C2C2" Offset="0.851" />
+                <GradientStop Color="#FFF6F6F6" />
             </LinearGradientBrush>
         </Grid.Background>
-            
-        <TextBox HorizontalAlignment="Left" x:Name="TxtFrom" Background="DarkGray" Height="23" Margin="101,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="654"/>
-        <PasswordBox HorizontalAlignment="Left" Background="DarkGray" Margin="101,77,0,0" x:Name="TxtPassword" VerticalAlignment="Top" Width="654" Height="23"/>
-        <TextBox HorizontalAlignment="Left" x:Name="TxtTo" Background="DarkGray" Text="" Height="23" Margin="100,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="654"/>
-        <TextBox HorizontalAlignment="Left" x:Name="TxtTitle" Background="DarkGray" Text="" Height="23" Margin="100,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="654"/>
-        <TextBox HorizontalAlignment="Left" x:Name="TxtBody" Background="DarkGray" Text="" Height="205" Margin="100,215,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="654"/>
 
-        <Label Content="From" HorizontalAlignment="Left" Margin="30,37,0,0" VerticalAlignment="Top" Width="60"/>
-        <Label Content="Password" HorizontalAlignment="Left" Margin="30,74,0,0" VerticalAlignment="Top" Width="60"/>
-        <Label Content="To" HorizontalAlignment="Left" Margin="30,147,0,0" VerticalAlignment="Top" Width="60"/>
-        <Label Content="Title" HorizontalAlignment="Left" Margin="30,182,0,0" VerticalAlignment="Top" Width="60"/>
-        <Label Content="Body" HorizontalAlignment="Left" Margin="30,215,0,0" VerticalAlignment="Top" Width="60"/>
+        <TextBox HorizontalAlignment="Left" x:Name="TxtFrom" Background="DarkGray" Height="23" Margin="101,40,0,0"
+                 TextWrapping="Wrap" VerticalAlignment="Top" Width="654" />
+        <PasswordBox HorizontalAlignment="Left" Background="DarkGray" Margin="101,77,0,0" x:Name="TxtPassword"
+                     VerticalAlignment="Top" Width="654" Height="23" />
+        <TextBox HorizontalAlignment="Left" x:Name="TxtTo" Background="DarkGray" Text="" Height="23"
+                 Margin="100,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="654" />
+        <TextBox HorizontalAlignment="Left" x:Name="TxtTitle" Background="DarkGray" Text="" Height="23"
+                 Margin="100,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="654" />
+        <TextBox HorizontalAlignment="Left" x:Name="TxtBody" Background="DarkGray" Text="" Height="205"
+                 Margin="100,215,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="654" />
 
-        <Button Content="Send" BorderBrush="{x:Null}" Background="#FF64CCF1" Foreground="White" Style="{DynamicResource RoundedStyleButton}"  Click="btn_SendMessage"  HorizontalAlignment="Left" Margin="100,425,0,0" VerticalAlignment="Top" Width="140"/>
-        <Button Content="View Inbox" BorderBrush="{x:Null}" Background="#FF64CCF1" Foreground="White" Style="{DynamicResource RoundedStyleButton}" Click="btn_ViewInbox" HorizontalAlignment="Left" Margin="800,425,0,0" VerticalAlignment="Top" Width="140"/>
-        <Button Content="Delete Message" BorderBrush="{x:Null}" Background="#FF64CCF1" Foreground="White" Style="{DynamicResource RoundedStyleButton}" Click="btn_MessageDelete" HorizontalAlignment="Left" Margin="960,425,0,0" VerticalAlignment="Top" Width="140"/>
-        <Button Content="Attach Files" BorderBrush="{x:Null}" Background="#FF64CCF1" Foreground="White" Style="{DynamicResource RoundedStyleButton}" Click="btn_AttachFiles"  HorizontalAlignment="Left" Margin="260,425,0,0" VerticalAlignment="Top" Width="140"/>
+        <Label Content="From" HorizontalAlignment="Left" Margin="30,37,0,0" VerticalAlignment="Top" Width="60" />
+        <Label Content="Password" HorizontalAlignment="Left" Margin="30,74,0,0" VerticalAlignment="Top" Width="60" />
+        <Label Content="To" HorizontalAlignment="Left" Margin="30,147,0,0" VerticalAlignment="Top" Width="60" />
+        <Label Content="Title" HorizontalAlignment="Left" Margin="30,182,0,0" VerticalAlignment="Top" Width="60" />
+        <Label Content="Body" HorizontalAlignment="Left" Margin="30,215,0,0" VerticalAlignment="Top" Width="60" />
 
-        <ListView x:Name="MyListView" Background="DarkGray" Foreground="White" HorizontalAlignment="Left" Height="380" Margin="800,40,0,0" VerticalAlignment="Top" Width="455" MouseDoubleClick="MyListView_DoubleClick">
+        <Button Content="Send" BorderBrush="{x:Null}" Background="#FF64CCF1" Foreground="White"
+                Style="{DynamicResource RoundedStyleButton}" Click="btn_SendMessage" HorizontalAlignment="Left"
+                Margin="100,425,0,0" VerticalAlignment="Top" Width="140" />
+        <Button Content="View Inbox" BorderBrush="{x:Null}" Background="#FF64CCF1" Foreground="White"
+                Style="{DynamicResource RoundedStyleButton}" Click="btn_ViewInbox" HorizontalAlignment="Left"
+                Margin="800,425,0,0" VerticalAlignment="Top" Width="140" />
+        <Button Content="Delete Message" BorderBrush="{x:Null}" Background="#FF64CCF1" Foreground="White"
+                Style="{DynamicResource RoundedStyleButton}" Click="btn_MessageDelete" HorizontalAlignment="Left"
+                Margin="960,425,0,0" VerticalAlignment="Top" Width="140" />
+        <Button Content="Attach Files" BorderBrush="{x:Null}" Background="#FF64CCF1" Foreground="White"
+                Style="{DynamicResource RoundedStyleButton}" Click="btn_AttachFiles" HorizontalAlignment="Left"
+                Margin="260,425,0,0" VerticalAlignment="Top" Width="140" />
+
+        <ListView x:Name="MyListView" Background="DarkGray" Foreground="White" HorizontalAlignment="Left" Height="380"
+                  Margin="800,40,0,0" VerticalAlignment="Top" Width="455" MouseDoubleClick="MyListView_DoubleClick">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="450" Header="Inbox mail"/>
+                    <GridViewColumn Width="450" Header="Inbox mail" />
                 </GridView>
             </ListView.View>
         </ListView>

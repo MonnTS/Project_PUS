@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
+using Client.EmailServiceReference;
 using Client.Interfaces;
 using Client.Methods;
-using Client.EmailServiceReference;
 using Microsoft.Win32;
 
 namespace Client
@@ -11,7 +12,7 @@ namespace Client
     public partial class MainWindow : IClear
     {
         private string[] _attachedFilePath;
-        
+
         public MainWindow()
         {
             InitializeComponent();
@@ -27,14 +28,15 @@ namespace Client
         private void btn_SendMessage(object sender, RoutedEventArgs e)
         {
             if (Check.IsFieldWithData(TxtFrom.Text, TxtPassword.Password))
-            {
                 try
                 {
                     var client = new EmailServiceClient();
-                    client.SendMessage(TxtFrom.Text, TxtPassword.Password, TxtTo.Text, TxtTitle.Text, TxtBody.Text, _attachedFilePath);
-                    MessageBox.Show(@"Your message has been sent!", @"Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    client.SendMessage(TxtFrom.Text, TxtPassword.Password, TxtTo.Text, TxtTitle.Text, TxtBody.Text,
+                        _attachedFilePath);
+                    MessageBox.Show(@"Your message has been sent!", @"Success", MessageBoxButton.OK,
+                        MessageBoxImage.Information);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show("Something went wrong", @"Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     Console.WriteLine(ex);
@@ -43,11 +45,8 @@ namespace Client
                 {
                     Clear();
                 }
-            }
             else
-            {
                 MessageBox.Show(@"Please fill all fields", @"Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
         }
 
         private void btn_ViewInbox(object sender, RoutedEventArgs e)
@@ -57,10 +56,7 @@ namespace Client
             var item = client.ViewMail(TxtFrom.Text, TxtPassword.Password);
             var list = item.ToList();
 
-            foreach (var it in list)
-            {
-                MyListView.Items.Add(it);
-            }
+            foreach (var items in list) MyListView.Items.Add(items);
         }
 
         private void btn_MessageDelete(object sender, RoutedEventArgs e)
@@ -71,12 +67,12 @@ namespace Client
             client.DeleteMail(TxtFrom.Text, TxtPassword.Password, index);
         }
 
-        private void MyListView_DoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void MyListView_DoubleClick(object sender, MouseButtonEventArgs e)
         {
             var index = MyListView.Items.IndexOf(MyListView.SelectedItem);
             var client = new EmailServiceClient();
             var content = client.ViewMessageBody(TxtFrom.Text, TxtPassword.Password, index);
-            
+
             MessageBox.Show(content, @"Message Body", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
@@ -87,7 +83,7 @@ namespace Client
                 Multiselect = true,
                 Filter = "All Files (*.*)|*.*"
             };
-            
+
             dialog.ShowDialog();
 
             var path = dialog.FileNames;

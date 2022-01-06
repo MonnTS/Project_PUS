@@ -1,6 +1,6 @@
 ﻿namespace Client.Interfaces
 {
-    interface IClear
+    internal interface IClear
     {
         void Clear();
     }
