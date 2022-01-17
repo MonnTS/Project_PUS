@@ -5,15 +5,18 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using AE.Net.Mail;
+using Attachment = System.Net.Mail.Attachment;
+using MailMessage = System.Net.Mail.MailMessage;
 
 namespace EService
 {
     public class Service : IEmailService
     {
-        public void SendMessage(string userName, string password, string sendTo, string title, string body, List<string> attachment)
+        public void SendMessage(string userName, string password, string sendTo, string title, string body,
+            List<string> attachment)
         {
             var smtpClient = new SmtpClient();
-            var mailMessage = new System.Net.Mail.MailMessage();
+            var mailMessage = new MailMessage();
             var basicCredits = new NetworkCredential(userName, password);
             var fromAddress = new MailAddress(userName);
 
@@ -22,16 +25,17 @@ namespace EService
             smtpClient.EnableSsl = true;
             smtpClient.UseDefaultCredentials = false;
             smtpClient.Credentials = basicCredits;
+            smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
 
             mailMessage.From = fromAddress;
             mailMessage.Subject = title;
             mailMessage.Body = body;
             mailMessage.IsBodyHtml = false;
-            
+
             if (attachment != null)
             {
-                foreach (var fileToAttach in attachment) 
-                    mailMessage.Attachments.Add(new System.Net.Mail.Attachment(fileToAttach));
+                foreach (var fileToAttach in attachment)
+                    mailMessage.Attachments.Add(new Attachment(fileToAttach));
                 mailMessage.To.Add(sendTo);
             }
             else
@@ -46,7 +50,6 @@ namespace EService
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
             }
         }
 
@@ -63,7 +66,7 @@ namespace EService
             var imapClient = new ImapClient("imap.gmail.com", userName, password, AuthMethods.Login, 993, true);
             imapClient.SelectMailbox("INBOX");
             var messageToDelete = imapClient.GetMessage(selectedMessage);
-            
+
             try
             {
                 imapClient.DeleteMessage(messageToDelete);
@@ -71,7 +74,6 @@ namespace EService
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
             }
         }
 
